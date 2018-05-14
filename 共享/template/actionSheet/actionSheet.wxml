@@ -1,0 +1,12 @@
+<template name='actionSheet'>
+  <view bindtap='hideActionSheet' hidden='{{actionSheetHidden}}' class='action-sheet'>
+    <view class='sheetCtt'>
+      <view class='sheetList'>
+        <button bindtap='hideActionSheet' open-type='share' style='width: 710rpx;height: 96rpx;line-height: 96rpx;border-radius:0;border-bottom:1px solid #ccc;'>转发</button>
+        <button bindtap='createShareImg' style='width: 710rpx;height: 96rpx;line-height: 96rpx;border-radius:0;border-bottom:1px solid #ccc;'>生成朋友圈分享图</button>
+        <button bindtap='pageCopyLink' style='width: 710rpx;height: 96rpx;line-height: 96rpx;border-radius:0;'>复制链接</button>
+      </view>
+      <button style='width: 710rpx;height: 96rpx;line-height: 96rpx;' bindtap='hideActionSheet' class='sheetCancel'>取消</button>
+    </view>
+  </view>
+</template>

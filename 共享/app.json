@@ -1,0 +1,35 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/info/info",
+    "pages/active/active",
+    "pages/rank/rank",
+    "pages/rules/rules",
+    "pages/item/item"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#b3b3b3",
+    "selectedColor": "#4aa1de",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/index/index",
+        "iconPath": "images/index_icon.png",
+        "selectedIconPath": "images/index_icon_active.png"
+      },
+      {
+        "text": "记录",
+        "pagePath": "pages/info/info",
+        "iconPath": "images/info_icon.png",
+        "selectedIconPath": "images/info_icon_active.png"
+      }
+    ]
+  }
+}

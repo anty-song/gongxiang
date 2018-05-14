@@ -1,0 +1,52 @@
+<template name='header'>
+  <image src="{{activeData.piao}}" class='float float1'></image>
+  <image src="{{activeData.piao}}" class='float float2'></image>
+  <image src="{{activeData.piao}}" class='float float3'></image>
+  <image src="{{activeData.piao}}" class='float float4'></image>
+  <image src="{{activeData.piao}}" class='float float5'></image>
+  <image src="{{activeData.piao}}" class='float float6'></image>
+  <image src="{{activeData.piao}}" class='float float7'></image>
+  <image src="{{activeData.piao}}" class='float float8'></image>
+  <image src="{{activeData.piao}}" class='float float9'></image>
+  <view class='common-section'>
+     <!-- <view class='marquee' style='left:{{changeLeft}}rpx;'>{{activeData.marquee}}</view>  -->
+    <swiper autoplay='true' circular='true'>
+      <block wx:for='{{activeData.thumbs}}'>
+        <swiper-item>
+          <image src='{{item.thumb}}' style='height: 380rpx; width: 100%;'></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class='active-data' style='background-color:{{activeData.color}};'>
+      <view class='total'>
+        <view>
+          <i class="icon iconfont icon-canyuzhe"></i>
+          <text>已报名数</text>
+        </view>
+        <text>{{activeData.total}}</text>
+      </view>
+      <view class='votes'>
+        <view>
+          <i class="icon iconfont icon-toupiaoshu"></i>
+          <text wx:if='{{activeData.votename == 1}}'>累计票数</text>
+          <text wx:elif='{{activeData.votename == 2}}'>累计获赞</text>
+          <text wx:else='{{activeData.votename == 3}}'>累计支持</text>
+        </view>
+        <text>{{activeData.votes}}</text>
+      </view>
+      <view class='scans'>
+        <view>
+          <i class="icon iconfont icon-feiji"></i>
+          <text>访问数量</text>
+        </view>
+        <text>{{activeData.hits}}</text>
+      </view>
+    </view>
+    <view class='timer'>
+      <view class='timer-box' style='background-color:{{activeData.color}};'>
+        <i class="icon iconfont icon-shijian1"></i>
+        <text>{{activeState}}{{time}}</text>
+      </view>
+    </view>
+  </view>
+</template>

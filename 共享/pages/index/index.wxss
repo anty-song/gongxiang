@@ -1,0 +1,75 @@
+.wrap {
+  width: 700rpx;
+  margin: 0 auto;
+  text-align: center;
+}
+.wrap .head-tip {
+  display: inline-block;
+  position: relative;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  padding: 30rpx 0;
+  text-align: center;
+  color: #b3b3b3;
+}
+.wrap .head-tip::before,
+.wrap .head-tip::after {
+  position: absolute;
+  top: 44.5rpx;
+  content: "";
+  width: 65rpx;
+  height: 0;
+  border-top: 1rpx solid #b3b3b3;
+}
+.wrap .head-tip::before {
+  left: -70rpx;
+}
+.wrap .head-tip::after {
+  right: -70rpx;
+}
+.wrap .items {
+  display: flex;
+  flex-wrap: wrap;
+}
+.wrap .items .item {
+  width: 340rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 5rpx 10rpx 0 #b3b3b3;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin-bottom: 40rpx;
+}
+.wrap .items .item:nth-child(even) {
+  margin-left: 20rpx;
+}
+.wrap .items .item .img-box {
+  height: 170rpx;
+}
+.wrap .items .item .img-box image {
+  width: 100%;
+  height: 100%;
+}
+.wrap .items .item .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 102rpx;
+  font-size: 26rpx;
+  color: #4d4d4d;
+  text-align: center;
+  margin: 0 16rpx 16rpx;
+}
+.wrap .items .item .info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18rpx;
+  color: #a8a8a8;
+  margin: 0 16rpx 20rpx;
+}
+.wrap .loadmore {
+  height: 20rpx;
+  line-height: 20rpx;
+  font-size: 20rpx;
+  color: #ccc;
+  text-align: center;
+}

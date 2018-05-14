@@ -1,0 +1,44 @@
+<template name='bottomBar'>
+  <view wx:if='{{selected == "list-bar"}}' class='bottombar'>
+    <view class='list' bindtap='goList' style='color:{{activeData.color}}'>
+      <i class="icon iconfont icon-plus-activity"></i>
+      <text>参赛列表</text>
+    </view>
+    <view class='rank' bindtap='goRank'>
+      <i class="icon iconfont icon-jiangbei"></i>
+      <text>当前排名</text>
+    </view>
+    <view class='rules' bindtap='goRules'>
+      <i class="icon iconfont icon-touruguize"></i>
+      <text>活动规则</text>
+    </view>
+  </view>
+  <view wx:if='{{selected == "rank-bar"}}' class='bottombar'>
+    <view class='list' bindtap='goList'>
+      <i class="icon iconfont icon-plus-activity"></i>
+      <text>参赛列表</text>
+    </view>
+    <view class='rank' bindtap='goRank' style='color:{{activeData.color}}'>
+      <i class="icon iconfont icon-jiangbei"></i>
+      <text>当前排名</text>
+    </view>
+    <view class='rules' bindtap='goRules'>
+      <i class="icon iconfont icon-touruguize"></i>
+      <text>活动规则</text>
+    </view>
+  </view>
+  <view wx:if='{{selected == "rules-bar"}}' class='bottombar'>
+    <view class='list' bindtap='goList'>
+      <i class="icon iconfont icon-plus-activity"></i>
+      <text>参赛列表</text>
+    </view>
+    <view class='rank' bindtap='goRank'>
+      <i class="icon iconfont icon-jiangbei"></i>
+      <text>当前排名</text>
+    </view>
+    <view class='rules' bindtap='goRules' style='color:{{activeData.color}}'>
+      <i class="icon iconfont icon-touruguize"></i>
+      <text>活动规则</text>
+    </view>
+  </view>
+</template>

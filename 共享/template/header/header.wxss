@@ -1,0 +1,160 @@
+.common-section .active-data {
+  display: flex;
+  align-items: center;
+  height: 136rpx;
+  width: 100%;
+  border-radius: 10rpx;
+  color: #fff;
+  font-size: 26rpx;
+}
+.common-section .active-data > view {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 90rpx;
+  flex-grow: 1;
+  border-left: 2rpx solid #fff;
+}
+.common-section .active-data > view .icon {
+  margin-right: 4rpx;
+}
+.common-section .active-data .total {
+  border-left: none;
+}
+.common-section .timer {
+   text-align: center; 
+  margin: 22rpx 0 34rpx;
+}
+.common-section .timer-box {
+  display: inline-block;
+  height: 54rpx;
+  border-radius: 10rpx;
+  padding: 0 26rpx;
+  color: #fff;
+  font-size: 26rpx;
+  line-height: 54rpx;
+}
+.common-section .timer-box .icon {
+  margin-right: 8rpx;
+}
+.common-section .marquee {
+  height: 50rpx;
+  white-space: nowrap;
+  position: absolute;
+  top: 30rpx;
+  color: #fff;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  background-color: #000;
+  border-radius: 25rpx;
+  padding: 0 20rpx;
+  z-index: 999;
+}
+/* 漂浮物 */
+.float{
+  width:40rpx;
+  height:40rpx;
+  z-index:1000;
+  -webkit-animation-name: float;
+  animation-name: float;
+  /*动画播放时间*/
+  -webkit-animation-duration: 8000ms;
+  animation-duration: 8000ms;
+  /*动画播放次数*/
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  opacity: 0;
+  position:fixed;
+  top: 0;
+  /*图片缩放*/
+  -webkit-transform: translateZ(0) translate(0, 0) scale(0.6);
+  transform: translateZ(0) translate(0, 0) scale(0.6);
+}
+.float1{
+  left: 10%;
+  -webkit-transform: translate(1.5vh);
+  transform: translate(1.5vh);
+  -webkit-animation-delay: 200ms;
+  animation-delay: 200ms;
+}
+.float2{
+  left: 60%;
+  -webkit-transform: translate(1.5vh);
+  transform: translate(1.5vh);
+  -webkit-animation-delay: 5000ms;
+  animation-delay: 5000ms;
+
+}
+.float3{
+  left: 30%;
+  -webkit-animation-delay: 2000ms;
+  animation-delay: 2000ms;
+  -webkit-animation-duration: 4000ms;
+  animation-duration: 4000ms;
+  -webkit-transform: translateZ(0) translate(0, 0) scale(2);
+  transform: translateZ(0) translate(0, 0) scale(2);
+}
+.float4{
+  left: 40%;
+  -webkit-transform: translate(2.5vh);
+  transform: translate(2.5vh);
+  -webkit-animation-delay: 8000ms;
+  animation-delay:8000ms;
+}
+
+.float5{
+  left: 50%;
+  -webkit-transform: translate(3vh);
+  transform: translate(3vh);
+  -webkit-animation-delay: 6000ms;
+  animation-delay: 6000ms;
+}
+
+.float6{
+  left: 60%;
+  -webkit-transform: translate(3.5vh);
+  transform: translate(3.5vh);
+  -webkit-animation-delay: 3000ms;
+  animation-delay: 3000ms;
+}
+
+.float7{
+  left: 70%;
+  -webkit-transform: translate(4vh);
+  transform: translate(4vh);
+  -webkit-animation-delay: 1550ms;
+  animation-delay: 1550ms;
+}
+
+.float8{
+  left: 80%;
+  -webkit-transform: translate(4.5vh);
+  transform: translate(4.5vh);
+  -webkit-animation-delay: 655ms;
+  animation-delay: 655ms;
+}
+.float9{
+  left: 68%;
+  -webkit-transform: translate(4.5vh);
+  transform: translate(4.5vh);
+  -webkit-animation-delay: 7000ms;
+  animation-delay: 7000ms;
+}
+.float9{
+  left: 86%;
+  -webkit-transform: translate(4.5vh);
+  transform: translate(4.5vh);
+  -webkit-animation-delay: 7500ms;
+  animation-delay: 7500ms;
+}
+
+@keyframes float{
+  10%{
+    opacity: 1
+  }
+  100%{
+    -webkit-transform: translate3d(0, 100vh, 0) scale(2);
+    transform: translate3d(0, 100vh, 0) scale(2);
+  }
+}

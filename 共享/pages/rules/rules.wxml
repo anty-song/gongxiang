@@ -1,0 +1,64 @@
+<import src='../../template/bottomBar/bottomBar.wxml' />
+<import src='../../template/header/header.wxml' />
+<import src='../../utils/wxParse/wxParse.wxml' />
+<import src='../../template/actionSheet/actionSheet.wxml' />
+<view class='active-wrap'>
+  <view class='share-img'>
+    <image src='../../images/share_btn.png' bindtap='showActionSheet'></image>
+  </view>
+  <image class='bgpic' src='{{bgPic}}'></image>
+  <template is='header' data='{{activeData,activeState,time,changeLeft}}'></template>
+  <view class='rules-ctt' style='border: 2rpx solid {{activeData.color}};'>
+    <view class='rules-detail'>
+      <view class='rules-detail-tit' style='color: {{activeData.color}};border-bottom: 2rpx solid {{activeData.color}};'>活动规则</view>
+      <view class='rules-detail-words'>
+        <view wx:if='{{activeList.isweixin == 1}}'>平台限制：不限</view>
+        <view wx:else>平台限制：仅微信</view>
+        <view wx:if='{{activeData.votename == 1 && activeList.votetype == 1}}'>投票方式：不限</view>
+        <view wx:elif='{{activeData.votename == 1 && activeList.votetype == 2}}'>投票方式：仅限登录用户</view>
+        <view wx:elif='{{activeData.votename == 1 && activeList.votetype == 3}}'>投票方式：指定用户</view>
+        <view wx:elif='{{activeData.votename == 1 && activeList.votetype == 4}}'>投票方式：邀请码投票</view>
+        <view wx:elif='{{activeData.votename == 1 && activeList.votetype == 5}}'>投票方式：口令投票</view>
+        <view wx:elif='{{activeData.votename == 2 && activeList.votetype == 1}}'>点赞方式：不限</view>
+        <view wx:elif='{{activeData.votename == 2 && activeList.votetype == 2}}'>点赞方式：仅限登录用户</view>
+        <view wx:elif='{{activeData.votename == 2 && activeList.votetype == 3}}'>点赞方式：指定用户</view>
+        <view wx:elif='{{activeData.votename == 2 && activeList.votetype == 4}}'>点赞方式：邀请码点赞</view>
+        <view wx:elif='{{activeData.votename == 2 && activeList.votetype == 5}}'>点赞方式：口令点赞</view>
+        <view wx:elif='{{activeData.votename == 3 && activeList.votetype == 1}}'>支持方式：不限</view>
+        <view wx:elif='{{activeData.votename == 3 && activeList.votetype == 2}}'>支持方式：仅限登录用户</view>
+        <view wx:elif='{{activeData.votename == 3 && activeList.votetype == 3}}'>支持方式：指定用户</view>
+        <view wx:elif='{{activeData.votename == 3 && activeList.votetype == 4}}'>支持方式：邀请码支持</view>
+        <view wx:elif='{{activeData.votename == 3 && activeList.votetype == 5}}'>支持方式：口令支持</view>
+        <view>起止时间：{{activeList.startdate}} ~ {{activeList.enddate}}</view>
+        <view wx:if='{{activeList.dayvote == 1}}'>允许时段：不限时段</view>
+        <view wx:elif='{{activeList.dayvote == 2}}'>允许时段：{{activeList.daystart}}:00--{{activeList.dayend}}:00</view>
+        <view wx:if='{{activeData.votename == 1 && activeList.rule == 1}}'>投票限制：每位用户每天可投一票</view>
+        <view wx:elif='{{activeData.votename == 1 && activeList.rule == 2}}'>投票限制：每位用户仅可投一票</view>
+        <view wx:elif='{{activeData.votename == 1 && activeList.rule == 3}}'>投票限制：每位用户每半小时可投一次票</view>
+        <view wx:elif='{{activeData.votename == 1 && activeList.rule == 4}}'>投票限制：每位用户每一小时可投一次票</view>
+        <view wx:elif='{{activeData.votename == 1 && activeList.rule == 5}}'>投票限制：每位用户每四小时可投一次票</view>
+        <view wx:elif='{{activeData.votename == 1 && activeList.rule == 6}}'>投票限制：每位用户每六小时可投一次票</view>
+        <view wx:elif='{{activeData.votename == 2 && activeList.rule == 1}}'>点赞限制：每位用户每天可点赞一次</view>
+        <view wx:elif='{{activeData.votename == 2 && activeList.rule == 2}}'>点赞限制：每位用户仅可点赞一次</view>
+        <view wx:elif='{{activeData.votename == 2 && activeList.rule == 3}}'>投票限制：每位用户每半小时可点一次赞</view>
+        <view wx:elif='{{activeData.votename == 2 && activeList.rule == 4}}'>投票限制：每位用户每一小时可点一次赞</view>
+        <view wx:elif='{{activeData.votename == 2 && activeList.rule == 5}}'>投票限制：每位用户每四小时可点一次赞</view>
+        <view wx:elif='{{activeData.votename == 2 && activeList.rule == 6}}'>投票限制：每位用户每六小时可点一次赞</view>
+        <view wx:elif='{{activeData.votename == 3 && activeList.rule == 1}}'>支持限制：每位用户每天可支持一次</view>
+        <view wx:elif='{{activeData.votename == 3 && activeList.rule == 2}}'>支持限制：每位用户仅可支持一次</view>
+        <view wx:elif='{{activeData.votename == 3 && activeList.rule == 3}}'>投票限制：每位用户每半小时可支持一次</view>
+        <view wx:elif='{{activeData.votename == 3 && activeList.rule == 4}}'>投票限制：每位用户每一小时可支持一次</view>
+        <view wx:elif='{{activeData.votename == 3 && activeList.rule == 5}}'>投票限制：每位用户每四小时可支持一次</view>
+        <view wx:elif='{{activeData.votename == 3 && activeList.rule == 6}}'>投票限制：每位用户每六小时可支持一次</view>
+      </view>
+    </view>
+    <view class='active-intro' hidden='{{isIntro}}'>
+      <view class='rules-detail-tit' style='color: {{activeData.color}};border-bottom: 2rpx solid {{activeData.color}};'>活动介绍</view>
+      <view class='active-intro-words'>
+        <template is='wxParse' data='{{wxParseData:article.nodes}}'></template>
+      </view>
+    </view>
+  </view>
+  <template is='actionSheet' data='{{actionSheetHidden}}'></template>
+  <template is='bottomBar' data='{{activeData,selected,goList,goRank,goRules}}'></template>
+</view>

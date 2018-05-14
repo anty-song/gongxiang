@@ -1,0 +1,40 @@
+<view hidden='{{isAuthorization}}' style='position:fixed;height:100%;width:100%;background-color:rgba(0,0,0,.3);'>
+  <view style='width: 500rpx; height: 200rpx;margin:300rpx auto 0;background-color:#fff;display:flex;justify-content:center;align-items:center;border-radius:10rpx;'>
+    <button wx:if="{{canIUse}}" type='primary' size='mini' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+    <view wx:else>请升级微信版本</view>
+  </view>
+</view>
+<view class='page'>
+<import src='../../template/actionSheet/actionSheet.wxml' />
+<!-- 分享图position:absolute;top:0;left:-9999rpx;visibility:hidden;hidden='{{pageHide}}' -->
+<view style='position:relative;'>
+  <canvas canvas-id="shareCanvas" style="position:absolute;top:0;left:-9999rpx;visibility:hidden;width:100%;height:{{windowHeight}}px"></canvas>
+</view>
+<view class='wrap'>
+   <!-- <button type='primary' style='position:fixed;top:0;left:0;' bindtap='showCode'>生成小程序码</button>  -->
+  <view class='share-img'>
+    <image src='../../images/share_btn.png' bindtap='showActionSheet'></image>
+  </view>
+  <view class='head-tip'>热门推荐</view>
+  <view class='items'>
+    <view class='item'
+          bindtap="goActive"
+          wx:for="{{list}}"
+          data-itemid="{{item.itemid}}">
+      <view class='img-box'>
+        <image src='{{item.thumb}}'></image>
+      </view>
+      <view class='title'><text>{{item.title}}</text></view>
+      <view class='info'>
+        <view class='views'>访问<text>{{item.hits}}</text></view>
+        <view class='votes'>票数<text>{{item.votes}}</text></view>
+        <view class='state' wx:if="{{item.isend == 1}}">未开始</view>
+        <view class='state' wx:elif="{{item.isend == 2}}">已结束</view>
+        <view class='state' wx:else>进行中</view>
+      </view>
+    </view>
+  </view>
+  <template is='actionSheet' data='{{actionSheetHidden}}'></template>
+  <view class='loadmore'>{{hint}}</view>
+</view>
+</view>

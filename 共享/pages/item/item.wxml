@@ -1,0 +1,36 @@
+<import src='../../template/bottomBar/bottomBar.wxml' />
+<import src='../../template/header/header.wxml' />
+<import src='../../template/actionSheet/actionSheet.wxml' />
+<!-- 分享图 -->
+ <view style='position:relative;'>
+  <canvas canvas-id="shareCanvas" style="position:absolute;top:0;left:-9999rpx;visibility:hidden;width:100%;height:{{windowHeight}}px"></canvas>
+</view>
+<view class='item-wrap'>
+  <view class='share-img'>
+    <image src='../../images/share_btn.png' bindtap='showActionSheet'></image>
+  </view>
+  <image class='bgpic' src='{{bgPic}}'></image>
+  <template is='header' data='{{activeData,activeState,time,changeLeft}}'></template>
+  <view class='item-ctt' style='background-color:{{activeData.color}};'>
+    <view class='item-name'>{{list.num}}号 {{list.name}}</view>
+      <view class='img-box'>
+        <image src='{{list.imgs[0].img}}' mode='widthFix'></image>
+      </view> 
+  </view>
+  <view class='item-vote'
+        wx:if='{{activeData.votename == 1}}'
+        style='color:{{activeData.color}}'>当前票数：{{list.votes}}</view>
+  <view class='item-vote'
+        wx:elif='{{activeData.votename == 2}}'
+        style='color:{{activeData.color}}'>当前赞数：{{list.votes}}</view>
+  <view class='item-vote'
+        wx:else
+        style='color:{{activeData.color}}'>当前支持数：{{list.votes}}</view>
+  <view class='item-rank' style='color:{{activeData.color}}'>当前排名：{{list.rank}}</view>
+  <view class='item-intro' hidden='{{hasIntro}}' style='border: 2rpx solid {{activeData.color}};'>
+    <view class='item-intro-tit' style='color:{{activeData.color}};border-bottom: 2rpx solid {{activeData.color}};'>选手简介</view>
+    <view class='item-intro-words'>{{list.introduce}}</view>
+  </view>
+  <template is='actionSheet' data='{{actionSheetHidden}}'></template>
+  <template is='bottomBar' data='{{activeData,selected,goList,goRank,goRules}}'></template>
+</view>

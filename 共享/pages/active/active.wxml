@@ -1,0 +1,202 @@
+<import src='../../template/bottomBar/bottomBar.wxml' />
+<import src='../../template/header/header.wxml' />
+<import src='../../template/actionSheet/actionSheet.wxml' />
+<!-- 分享图 -->
+ <view style='position:relative;'>
+  <canvas canvas-id="shareCanvas" style="position:absolute;top:0;left:-9999rpx;visibility:hidden;width:100%;height:{{windowHeight}}px"></canvas>
+</view> 
+<view class='active-wrap'>
+  <view class='share-img'>
+    <image src='../../images/share_btn.png' bindtap='showActionSheet'></image>
+  </view>
+  <image class='bgpic' src='{{activeData.bgpic}}'></image>
+  <template is='header' data='{{activeData,activeState,time,changeLeft}}'></template>
+  <view class='search'>
+    <input class='search-input'
+          confirm-type='search'
+          placeholder='请输入选项名称或编号'
+          value='{{searchValue}}'
+          bindinput='getSearchValue'
+          bindconfirm='search'></input>
+    <view class='search-btn'
+          style='background-color:{{activeData.color}};'
+          bindtap='search'>搜索</view>
+  </view>
+  <view class='player'>
+    <view class='empty' hidden='{{emptyHide}}'>
+      <image src='../../images/nohave.png'></image>
+    </view>
+    <view class='item'
+          bindtap='goItemPage'
+          wx:for='{{list}}'
+          data-voteitemid='{{item.itemid}}'>
+      <view class='number'>{{item.num}}号</view>
+      <view wx:if='{{activeData.border}}'>
+        <view wx:if='{{activeData.imgscale == 1}}'
+            class='img-box'
+            style='height:calc(320rpx*3/4);border:16rpx solid transparent;border-image: url({{activeData.border}}) 20 fill repeat;'>
+          <image src="{{item.img}}"></image>
+        </view>
+        <view wx:elif='{{activeData.imgscale == 2}}'
+              class='img-box'
+              style='height:calc(320rpx*4/3);border:16rpx solid transparent;border-image: url({{activeData.border}}) 20 fill repeat;'>
+          <image src="{{item.img}}"></image>
+        </view>
+        <view wx:else
+              class='img-box'
+              style='height:320rpx;border:16rpx solid transparent;border-image: url({{activeData.border}}) 20 fill repeat;'>
+          <image src="{{item.img}}"></image>
+        </view>
+      </view>
+      <view wx:else>
+        <view wx:if='{{activeData.imgscale == 1}}'
+            class='img-box'
+            style='height:calc(320rpx*3/4);'>
+          <image src="{{item.img}}"></image>
+        </view>
+        <view wx:elif='{{activeData.imgscale == 2}}'
+              class='img-box'
+              style='height:calc(320rpx*4/3);'>
+          <image src="{{item.img}}"></image>
+        </view>
+        <view wx:else
+              class='img-box'
+              style='height:320rpx;'>
+          <image src="{{item.img}}"></image>
+        </view>
+      </view>
+      <view class='item-info' style='background-color:{{activeData.color}};'>
+        <view class='name'>
+          <i class="icon iconfont icon-canyuzhe"></i>
+          <text>{{item.name}}</text>
+        </view>
+        <view class='handle'
+              catchtap='handler'
+              wx:if='{{activeData.votename == 1}}'
+              data-voteitemid='{{item.itemid}}'
+              style='background-color: {{handlerColor}};'>
+          <i class="icon iconfont icon-xin"></i>
+          <text>投票</text>
+        </view>
+        <view class='handle'
+              catchtap='handler'
+              wx:elif='{{activeData.votename == 2}}'
+              data-voteitemid='{{item.itemid}}'
+              style='background-color: {{handlerColor}};'>
+          <i class="icon iconfont icon-dianzan"></i>
+          <text>点赞</text>
+        </view>
+        <view class='handle'
+              catchtap='handler'
+              wx:else='{{activeData.votename == 3}}'
+              data-voteitemid='{{item.itemid}}'
+              style='background-color: {{handlerColor}};'>
+          <i class="icon iconfont icon-uninterested"></i>
+          <text>支持</text>
+        </view>
+        <view class='votes'>{{item.votes}}票</view>
+      </view>
+    </view>
+  </view>
+  <!--投票 成功/失败 结果展示  -->
+  <view class='vote-result' hidden='{{resHide}}'>
+    <view class='vote-result-ctt' wx:if='{{res.code == 1}}'>
+      <view class='close' bindtap='closeRes'>
+        <image src='../../images/close.png'></image>
+      </view>
+      <view class='img-box'>
+        <image src='../../images/success.png'></image>
+      </view>
+      <text class='reshint'
+            style='color: #1e478c;'
+            wx:if='{{activeData.votename == 1}}'>投票成功</text>
+      <text class='reshint'
+            style='color: #1e478c;'
+            wx:elif='{{activeData.votename == 2}}'>点赞成功</text>
+      <text class='reshint'
+            style='color: #1e478c;'
+            wx:else>支持成功</text>
+      <text class='thank' style='color: #1e478c;'>感谢您支持{{res.name}}</text>
+      <text class='msg'>{{res.msg}}</text>
+      <text class='lapiao'>分享活动，为喜欢的TA拉票</text>
+      <view class='btn-group'>
+        <button open-type='share' class='share'>分享好友</button>
+        <button class='copy' bindtap='cardCopyLink'>复制链接</button>
+      </view>
+    </view>
+    <view class='vote-result-ctt' wx:else>
+      <view class='close' bindtap='closeRes'>
+        <image src='../../images/close.png'></image>
+      </view>
+      <view class='img-box'>
+        <image src='../../images/fail.png'></image>
+      </view>
+      <text class='reshint'
+            style='color: #7a2121;'
+            wx:if='{{activeData.votename == 1}}'>投票失败</text>
+      <text class='reshint'
+            style='color: #7a2121;'
+            wx:elif='{{activeData.votename == 2}}'>点赞失败</text>
+      <text class='reshint'
+            style='color: #7a2121;'
+            wx:else>支持失败</text>
+      <text class='msg' style='color: #7a2121;font-size:24rpx;line-height:38rpx;'>{{res.msg}}</text>
+      <text class='lapiao'>分享活动，为喜欢的TA拉票</text>
+      <view class='btn-group'>
+        <button open-type='share' class='share'>分享好友</button>
+        <button class='copy' bindtap='cardCopyLink'>复制链接</button>
+      </view>
+    </view>
+  </view>
+  <!--验证码弹窗  -->
+  <view class='yzm' hidden='{{yzmHide}}'>
+    <view class='yzm-ctt'>
+      <view class='close' bindtap='closeYzm'>
+        <image src='../../images/close.png'></image>
+      </view>
+      <view class='yzm-tit'>验证码</view>
+      <!-- <form class='yzm-box' bindsubmit='getYzmValue'>
+        <view class='yzm-input'>
+          <input name='input' placeholder='请输入验证码' value='{{yzmValue}}'></input>
+          <view class='yzm-img'></view>
+        </view>
+        <button class='yzm-btn' form-type='submit'>确定</button>
+      </form> -->
+      <view class='yzm-box'>
+        <view class='yzm-input'>
+          <input placeholder='请输入验证码' bindinput='getYzmValue' value='{{yzmValue}}'></input>
+          <view class='yzm-img'>
+            <image src='{{yzmImg}}' bindtap='getYzmImg'></image>
+          </view>
+        </view>
+        <view class='err-msg' hidden='{{yzmErrMsgHide}}'>验证码有误请重新填写</view>
+        <button class='yzm-btn' bindtap='yzmVote'>确定</button>
+      </view>
+    </view>
+  </view>
+  <!--邀请码投票弹窗  -->
+  <view class='yao' hidden='{{yaoHide}}'>
+    <view class='yao-ctt'>
+      <view class='close' bindtap='closeYao'>
+        <image src='../../images/close.png'></image>
+      </view>
+      <view class='yao-tit'>当前活动需要输入邀请码才可参加</view>
+      <input bindinput='getYaoValue' value='{{yaoValue}}'></input>
+      <button class='yao-btn' bindtap='yaoVote'>确定</button>
+    </view>
+  </view>
+  <!--口令投票弹窗  -->
+  <view class='ling' hidden='{{lingHide}}'>
+    <view class='ling-ctt'>
+      <view class='close' bindtap='closeLing'>
+        <image src='../../images/close.png'></image>
+      </view>
+      <view class='ling-tit'>当前活动需要输入指定口令才可参加</view>
+      <input bindinput='getLingValue' value='{{lingValue}}'></input>
+      <button class='ling-btn' bindtap='lingVote'>确定</button>
+    </view>
+  </view>
+  <template is='actionSheet' data='{{actionSheetHidden}}'></template>
+  <template is='bottomBar' data='{{activeData,selected,goList,goRank,goRules}}'></template>
+  <view class='loadmore'>{{hint}}</view>
+</view>

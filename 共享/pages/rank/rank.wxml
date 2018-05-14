@@ -1,0 +1,35 @@
+<import src='../../template/bottomBar/bottomBar.wxml' />
+<import src='../../template/header/header.wxml' />
+<import src='../../template/actionSheet/actionSheet.wxml' />
+<view class='active-wrap'>
+  <view class='share-img'>
+    <image src='../../images/share_btn.png' bindtap='showActionSheet'></image>
+  </view>
+  <image class='bgpic' src='{{bgPic}}'></image>
+  <template is='header' data='{{activeData,activeState,time,changeLeft}}'></template>
+  <view class='rank-ctt'>
+    <view class='table-head'>
+      <view>排名</view>
+      <view>编号</view>
+      <view>名称</view>
+      <view>票数</view>
+    </view>
+    <view class='rank-item' wx:for='{{list}}'>
+      <view wx:if='{{index == 0}}'>
+        <image src='../../images/one.png'></image>
+      </view>
+      <view wx:elif='{{index == 1}}'>
+        <image src='../../images/two.png'></image>
+      </view>
+      <view wx:elif='{{index == 2}}'>
+        <image src='../../images/three.png'></image>
+      </view>
+      <view wx:else>{{index+1}}</view>
+      <view>{{item.num}}</view>
+      <view>{{item.name}}</view>
+      <view>{{item.votes}}</view>
+    </view>
+  </view>
+  <template is='actionSheet' data='{{actionSheetHidden}}'></template>
+  <template is='bottomBar' data='{{activeData,selected,goList,goRank,goRules}}'></template>
+</view>

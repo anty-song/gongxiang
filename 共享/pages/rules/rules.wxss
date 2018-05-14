@@ -1,0 +1,20 @@
+@import "../../utils/wxParse/wxParse.wxss";
+.rules-ctt {
+  font-size: 25rpx;
+  line-height: 40rpx;
+  padding: 30rpx 20rpx 0; 
+  width: 566rpx;
+  margin: 0 auto;
+  border-radius: 10rpx;
+  background-color: rgba(255,255,255,.7);
+  box-shadow: 0 0 10rpx 0 #fff;
+}
+.rules-detail-tit  {
+  display: inline-block;
+  padding-bottom: 5rpx;
+  margin-bottom: 11rpx;
+}
+.active-intro,
+.rules-detail {
+  padding-bottom: 30rpx;
+}

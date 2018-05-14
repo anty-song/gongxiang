@@ -1,0 +1,24 @@
+<view class='wrap'>
+  <view hidden='{{itemHide}}'>
+    <view class='item'
+          wx:for='{{list}}'
+          data-itemid='{{item.itemid}}'
+          bindtap='goItem'>
+      <view class='item-head'>
+        <view class='tag'>活动</view>
+        <view class='name'>{{item.title}}</view>
+      </view>
+      <view class='item-foot'>
+        <view class='votes'>
+          <i class="icon iconfont icon-toupiaoshu"></i>
+          <text>{{item.votes}}人参与投票</text>
+        </view>
+        <view class='state' wx:if='{{item.isend == 2}}' style='color:#ff9999;'>{{item.time}}</view>
+        <view class='state' wx:else>{{item.time}}</view>
+      </view>
+    </view>
+  </view>
+  <view hidden='{{hintHide}}' style='text-align:center;color:#ccc;margin-top:200rpx;'>
+    <text>暂无浏览记录</text>
+  </view>
+</view>
